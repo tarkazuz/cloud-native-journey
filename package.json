@@ -1,0 +1,20 @@
+{
+  "name": "exercise-code-nodejs",
+  "version": "1.0.0",
+  "description": "You have checked out the wrong branch, since this is the default branch you likely forgot to specify which branch should be checked out. **Re-read the exercise instructions carefully and try again.**",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "npx mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.tools.sap/cloud-curriculum/exercise-code-nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^9.1.3"
+  }
+}
