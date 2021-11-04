@@ -6,5 +6,4 @@ This repository contains the code / starting points that match the topics in the
 - Starting points are in separate branches, the branch name maps to the corresponding topics in the [material repository](https://github.tools.sap/cloud-curriculum/material), e.g. `logging-fundamentals`
 - The code for the starting point resides directly in the top-level directory of the corresponding branch
 - The master branch only contains a base project with following run scripts:
-    - `npm start` starts the application
     - `npm test` runs all tests
