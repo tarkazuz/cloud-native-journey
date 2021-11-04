@@ -1,16 +1,16 @@
-import assert from 'assert'
+import { strict as assert } from 'assert'
 import { Customer } from '../lib/customer.js'
 import { Movie, MovieType } from '../lib/movie.js'
 import { Rental } from '../lib/rental.js'
 
-describe('Videostore', () => {
-  /** @type {Customer} */ let customer
-  /** @type {Movie} */ let newReleaseMovie
-  /** @type {Movie} */ let newReleaseMovie2
-  /** @type {Movie} */ let childrensMovie
-  /** @type {Movie} */ let regularMovie1
-  /** @type {Movie} */ let regularMovie2
-  /** @type {Movie} */ let regularMovie3
+describe('videostore', () => {
+  let customer = null
+  let newReleaseMovie = null
+  let newReleaseMovie2 = null
+  let childrensMovie = null
+  let regularMovie1 = null
+  let regularMovie2 = null
+  let regularMovie3 = null
 
   beforeEach(() => {
     customer = new Customer('Customer')
@@ -27,7 +27,7 @@ describe('Videostore', () => {
 
     customer.statement()
 
-    assert.strictEqual(customer.getTotalAmount(), 9.0)
+    assert.equal(customer.getTotalAmount(), 9.0)
   })
 
   it('should calculate totals for rental of two new release movies', () => {
@@ -36,8 +36,8 @@ describe('Videostore', () => {
 
     customer.statement()
 
-    assert.strictEqual(customer.getTotalAmount(), 18.0)
-    assert.strictEqual(customer.getFrequentRenterPoints(), 4)
+    assert.equal(customer.getTotalAmount(), 18.0)
+    assert.equal(customer.getFrequentRenterPoints(), 4)
   })
 
   it('should calculate totals for single childrens movie', () => {
@@ -45,8 +45,8 @@ describe('Videostore', () => {
 
     customer.statement()
 
-    assert.strictEqual(customer.getTotalAmount(), 1.5)
-    assert.strictEqual(customer.getFrequentRenterPoints(), 1)
+    assert.equal(customer.getTotalAmount(), 1.5)
+    assert.equal(customer.getFrequentRenterPoints(), 1)
   })
 
   it('should calculate totals for multiple regular movies', () => {
@@ -56,8 +56,8 @@ describe('Videostore', () => {
 
     customer.statement()
 
-    assert.strictEqual(customer.getTotalAmount(), 7.5)
-    assert.strictEqual(customer.getFrequentRenterPoints(), 3)
+    assert.equal(customer.getTotalAmount(), 7.5)
+    assert.equal(customer.getFrequentRenterPoints(), 3)
   })
 
   it('should format statement for multiple regular movies', () => {
@@ -67,11 +67,15 @@ describe('Videostore', () => {
 
     const statementText = customer.statement()
 
-    assert.strictEqual(statementText, 'Rental Record for Customer\n' +
-      '\tRegular 1\t2.0\n' +
-      '\tRegular 2\t2.0\n' +
-      '\tRegular 3\t3.5\n' +
-      'You owed 7.5\n' +
-      'You earned 3 frequent renter points\n')
+    const expectedStatementText = [
+      'Rental Record for Customer',
+      '\tRegular 1\t2.0',
+      '\tRegular 2\t2.0',
+      '\tRegular 3\t3.5',
+      'You owed 7.5',
+      'You earned 3 frequent renter points'
+    ].join('\n')
+
+    assert.equal(statementText, expectedStatementText)
   })
 })
