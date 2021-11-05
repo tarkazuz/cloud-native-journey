@@ -3,7 +3,7 @@ import { Customer } from '../lib/customer.js'
 import { Movie, MovieType } from '../lib/movie.js'
 import { Rental } from '../lib/rental.js'
 
-describe('videostore', () => {
+describe('Videostore', () => {
   let customer = null
   let newReleaseMovie = null
   let newReleaseMovie2 = null
@@ -12,14 +12,17 @@ describe('videostore', () => {
   let regularMovie2 = null
   let regularMovie3 = null
 
-  beforeEach(() => {
-    customer = new Customer('Customer')
+  before(() => {
     newReleaseMovie = new Movie('New Release', MovieType.NEW_RELEASE)
     newReleaseMovie2 = new Movie('New Release 2', MovieType.NEW_RELEASE)
     childrensMovie = new Movie('Childrens', MovieType.CHILDRENS)
     regularMovie1 = new Movie('Regular 1', MovieType.REGULAR)
     regularMovie2 = new Movie('Regular 2', MovieType.REGULAR)
     regularMovie3 = new Movie('Regular 3', MovieType.REGULAR)
+  })
+
+  beforeEach(() => {
+    customer = new Customer('Customer')
   })
 
   it('should calculate totals for single new release movie', () => {
