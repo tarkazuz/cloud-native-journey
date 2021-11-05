@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "lint": "npx eslint .",
-    "pretest": "npm run lint",
     "test": "npx mocha"
   },
   "engines": {
