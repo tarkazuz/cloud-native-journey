@@ -1,7 +1,5 @@
 import { strict as assert } from 'assert'
-import { Customer } from '../lib/customer.js'
-import { Movie, MovieType } from '../lib/movie.js'
-import { Rental } from '../lib/rental.js'
+import { Customer, Movie, MovieType, Rental } from '../index.js'
 
 describe('Videostore', () => {
   let customer = null
@@ -25,6 +23,10 @@ describe('Videostore', () => {
     customer = new Customer('Customer')
   })
 
+  it('should return the customer name', () => {
+    assert.equal(customer.getCustomerName(), 'Customer')
+  })
+
   it('should calculate totals for single new release movie', () => {
     customer.addRental(new Rental(newReleaseMovie, 3))
 
@@ -44,11 +46,11 @@ describe('Videostore', () => {
   })
 
   it('should calculate totals for single childrens movie', () => {
-    customer.addRental(new Rental(childrensMovie, 3))
+    customer.addRental(new Rental(childrensMovie, 4))
 
     customer.statement()
 
-    assert.equal(customer.getTotalAmount(), 1.5)
+    assert.equal(customer.getTotalAmount(), 3)
     assert.equal(customer.getFrequentRenterPoints(), 1)
   })
 
