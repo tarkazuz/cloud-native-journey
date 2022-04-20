@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "c8 mocha",
-    "watch": "nodemon --exec 'npm test'"
+    "watch": "nodemon --exec npm test"
   },
   "engines": {
     "node": ">=16",
