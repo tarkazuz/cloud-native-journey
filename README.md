@@ -6,11 +6,11 @@ This repository contains the code / starting point for the [Refactoring](https:/
 
 The repository provides a `videostore` module comprising classes for `Customer`, `Movie`, and `Rental`.
 
-Actual classes can be found in the `lib` folder.
+Actual classes can be found in the `src/lib` folder.
 
 Test code can be found in the `test` folder.
 
-The main entry point is the `index.js` file.
+The main entry point is the `src/index.js` file.
 
 ## Getting Started
 
@@ -23,7 +23,7 @@ Please run:
 
 ## Configuration
 
-The following configuration files are being used:
+The following configuration options in package.json and files are being used:
 
  - `.editorconfig` for [EditorConfig](https://editorconfig.org/) to ensure consistent coding styles for multiple developers working on the same project across various editors and IDEs
- - `.eslintrc` for [ESLint](https://eslint.org/) to find and fix problems in JavaScript code
+ - `tslint` for [ESLint](https://eslint.org/) to find and fix problems in JavaScript code
