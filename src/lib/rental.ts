@@ -1,23 +1,23 @@
-import type { Movie } from "./movie.js";
+import type { Movie } from './movie.js'
 
 export class Rental {
-  movie: Movie;
-  daysRented = 0;
+  movie: Movie
+  daysRented = 0
 
   constructor(movie: Movie, daysRented: number) {
-    this.movie = movie;
-    this.daysRented = daysRented;
+    this.movie = movie
+    this.daysRented = daysRented
   }
 
   getMovie(): Movie {
-    return this.movie;
+    return this.movie
   }
 
   getDaysRented(): number {
-    return this.daysRented;
+    return this.daysRented
   }
 
   getTitle(): string {
-    return this.movie.getTitle();
+    return this.movie.getTitle()
   }
 }

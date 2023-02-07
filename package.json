@@ -74,10 +74,6 @@
     },
     "rules": {
       "no-trailing-spaces": "warn",
-      "semi": [
-        "error",
-        "always"
-      ],
       "eol-last": [
         "error",
         "always"
@@ -91,7 +87,7 @@
       ],
       "quotes": [
         "error",
-        "double"
+        "singles"
       ]
     },
     "ignorePatterns": [
