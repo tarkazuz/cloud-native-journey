@@ -4,20 +4,23 @@ export enum MovieType {
   CHILDRENS = 2,
 }
 
-export class Movie {
-  title = ''
+export abstract class Movie {
+  private title = ''
   priceCode = 0
 
-  constructor(title: string, priceCode: number) {
+  constructor(title: string) {
     this.title = title
-    this.priceCode = priceCode
   }
 
   getTitle(): string {
     return this.title
   }
 
-  getPriceCode(): number {
-    return this.priceCode
+  determineFrequentRenterPoints(daysRented: number): number {
+    return 0
+  }
+
+  determineAmount(daysRented: number): number {
+    return 0
   }
 }

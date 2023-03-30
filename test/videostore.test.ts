@@ -1,8 +1,11 @@
 import { strict as assert } from 'assert'
-import { Customer, Movie, MovieType, Rental } from '../src/index.js'
+import { Statement, Movie, MovieType, Rental } from '../src/index.js'
+import { ChildrensMovie } from '../src/index.js'
+import { NewReleaseMovie } from '../src/index.js'
+import { RegularMovie } from '../src/index.js'
 
 describe('Videostore', () => {
-  let customer: Customer
+  let statement: Statement
   let newReleaseMovie: Movie
   let newReleaseMovie2: Movie
   let childrensMovie: Movie
@@ -11,66 +14,66 @@ describe('Videostore', () => {
   let regularMovie3: Movie
 
   before(() => {
-    newReleaseMovie = new Movie('New Release', MovieType.NEW_RELEASE)
-    newReleaseMovie2 = new Movie('New Release 2', MovieType.NEW_RELEASE)
-    childrensMovie = new Movie('Childrens', MovieType.CHILDRENS)
-    regularMovie1 = new Movie('Regular 1', MovieType.REGULAR)
-    regularMovie2 = new Movie('Regular 2', MovieType.REGULAR)
-    regularMovie3 = new Movie('Regular 3', MovieType.REGULAR)
+    newReleaseMovie = new NewReleaseMovie('New Release')
+    newReleaseMovie2 = new NewReleaseMovie('New Release 2')
+    childrensMovie = new ChildrensMovie('Childrens')
+    regularMovie1 = new RegularMovie('Regular 1')
+    regularMovie2 = new RegularMovie('Regular 2')
+    regularMovie3 = new RegularMovie('Regular 3')
   })
 
   beforeEach(() => {
-    customer = new Customer('Customer')
+    statement = new Statement('Customer')
   })
 
   it('should return the customer name', () => {
-    assert.equal(customer.getCustomerName(), 'Customer')
+    assert.equal(statement.getCustomerName(), 'Customer')
   })
 
   it('should calculate totals for single new release movie', () => {
-    customer.addRental(new Rental(newReleaseMovie, 3))
+    statement.addRental(new Rental(newReleaseMovie, 3))
 
-    customer.statement()
+    statement.generate()
 
-    assert.equal(customer.getTotalAmount(), 9.0)
+    assert.equal(statement.getTotalAmount(), 9.0)
   })
 
   it('should calculate totals for rental of two new release movies', () => {
-    customer.addRental(new Rental(newReleaseMovie, 3))
-    customer.addRental(new Rental(newReleaseMovie2, 3))
+    statement.addRental(new Rental(newReleaseMovie, 3))
+    statement.addRental(new Rental(newReleaseMovie2, 3))
 
-    customer.statement()
+    statement.generate()
 
-    assert.equal(customer.getTotalAmount(), 18.0)
-    assert.equal(customer.getFrequentRenterPoints(), 4)
+    assert.equal(statement.getTotalAmount(), 18.0)
+    assert.equal(statement.getFrequentRenterPoints(), 4)
   })
 
   it('should calculate totals for single childrens movie', () => {
-    customer.addRental(new Rental(childrensMovie, 4))
+    statement.addRental(new Rental(childrensMovie, 4))
 
-    customer.statement()
+    statement.generate()
 
-    assert.equal(customer.getTotalAmount(), 3)
-    assert.equal(customer.getFrequentRenterPoints(), 1)
+    assert.equal(statement.getTotalAmount(), 3)
+    assert.equal(statement.getFrequentRenterPoints(), 1)
   })
 
   it('should calculate totals for multiple regular movies', () => {
-    customer.addRental(new Rental(regularMovie1, 1))
-    customer.addRental(new Rental(regularMovie2, 2))
-    customer.addRental(new Rental(regularMovie3, 3))
+    statement.addRental(new Rental(regularMovie1, 1))
+    statement.addRental(new Rental(regularMovie2, 2))
+    statement.addRental(new Rental(regularMovie3, 3))
 
-    customer.statement()
+    statement.generate()
 
-    assert.equal(customer.getTotalAmount(), 7.5)
-    assert.equal(customer.getFrequentRenterPoints(), 3)
+    assert.equal(statement.getTotalAmount(), 7.5)
+    assert.equal(statement.getFrequentRenterPoints(), 3)
   })
 
   it('should format statement for multiple regular movies', () => {
-    customer.addRental(new Rental(regularMovie1, 1))
-    customer.addRental(new Rental(regularMovie2, 2))
-    customer.addRental(new Rental(regularMovie3, 3))
+    statement.addRental(new Rental(regularMovie1, 1))
+    statement.addRental(new Rental(regularMovie2, 2))
+    statement.addRental(new Rental(regularMovie3, 3))
 
-    const statementText = customer.statement()
+    const statementText = statement.generate()
 
     const expectedStatementText = [
       'Rental Record for Customer',
